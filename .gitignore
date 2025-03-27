@@ -1,0 +1,7 @@
+poetry.lock
+.idea
+.env
+__pycache__/
+.pytest_cache/
+.git/
+.venv/
