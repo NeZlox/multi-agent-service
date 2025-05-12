@@ -6,9 +6,42 @@ authors = ["NeZlox <cnegovek@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
+
+# Dependency management options for personal_growth_sdk:
+# - Git version (production): pulls directly from GitHub main branch
+# - Local path version (development): links to local SDK for active development
+# Switch between these by commenting/uncommenting as needed
+
+#personal_growth_sdk = { git = "https://github.com/NeZlox/personal-growth-sdk.git", branch = "main" }
+personal_growth_sdk = { path = "../personal-growth-sdk", develop = true }
+
+# Core Python version requirement
 python = "^3.12"
 
+# Environment management
+python-dotenv = "^1"
+
+# Web Framework (Litestar ecosystem)
+litestar = { extras = ["standard"], version = "^2" }
+litestar-granian = "^0"
+litestar-asyncpg = "^0"
+multidict = "6.2.0"
+
+# Logging
+structlog = "^24"
+
+# Database
+advanced-alchemy = "^0.20"
+sqlalchemy-utils = "^0"
+
+# Development tools
+ruff = "^0.11"
+
+# Authentication
+python-jose = "^3.4.0"
 
 [build-system]
+
+# Poetry build requirements
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

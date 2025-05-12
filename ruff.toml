@@ -1,0 +1,50 @@
+# Core Formatting Rules
+line-length = 120
+target-version = "py312"
+indent-width = 4
+
+# Linting Configuration
+[lint]
+select = [
+    "A",          # prevent using keywords that clobber python builtins
+    "ARG",        # Unused function args
+    "B",          # bugbear: security warnings
+    "C901",       # Cyclomatic complexity check (to ensure functions don't become too complex)
+    "D101",       # pydocstyle: Missing docstring in public class
+    "D102",       # pydocstyle: Missing docstring in public method
+    "E",          # pycodestyle
+    "F",          # pyflakes
+    "I",          # Import sorting (e.g. imports should be grouped into standard libraries, third-party, and local imports)
+    "I001",       # Ensure correct import grouping
+    "ISC",        # implicit string concatenation
+    "N",          # Ensures proper usage of noqa comments
+    "PL",         # pylint
+    "PERF203",    # try-except within a loop incurs performance overhead
+    "RUF",        # the ruff developer's own rules
+    "RUF100",     # Ensure no excessive usage of noqa
+    "S",          # Assert checks (enforce explicit exception handling)
+    "SIM",        # flake8-simplify
+    "T",          # type-related rules (for type hints, e.g. PEP 484)
+    "TYP",        # checks for missing type hints
+    "UP",         # alert you when better syntax is available in your python version
+]
+
+ignore = [
+    "TC001"       # Type-checking imports
+]
+
+# Formatting Preferences
+[format]
+indent-style = "space"
+skip-magic-trailing-comma = false
+quote-style = "double"
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = 72
+
+# Special Cases
+[lint.per-file-ignores]
+"app/infrastructure/db/migrations/*" = ["ALL"]
+
+[lint.pydocstyle]
+convention = "google"
