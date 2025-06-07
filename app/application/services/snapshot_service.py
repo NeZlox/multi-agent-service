@@ -55,12 +55,16 @@ class SnapshotService(metaclass=SingletonMeta):
             message: The actual message content to analyze
         """
 
-        return
-        params = {'user_id': user_id, 'message': message}
+        json = {'user_id': user_id, 'message': message}
+
+        # NOTE: Snapshot Service integration is currently untested.
+        # The response schema for /v1/snapshot has not been provided yet.
+        # This call assumes a generic dict response and may need to be adjusted once the contract is defined.
         try:
             await self.http_service.make_json_request(
                 url=f'{settings.app.SNAPSHOT_SERVICE_URL}/v1/snapshot',
                 method='POST',
+                json=json,
                 response_type=dict,
             )
         except Exception as exc:

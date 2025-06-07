@@ -1,0 +1,58 @@
+# ====== Shared Configuration ======
+x-multi-agent-service: &multi-agent-service
+  build: .
+  restart: always
+  env_file:
+    - .env
+  networks:
+    - pg-growth-network
+  depends_on:
+    pg-growth-multi-agent-db:
+      condition: service_healthy
+
+services:
+  # ====== API Service ======
+  pg-growth-multi-agent-api:
+    <<: *multi-agent-service
+    container_name: pg-growth-multi-agent-api
+    environment:
+      - MODE=${MODE:-DEV}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - LOG_LEVEL=${LOG_LEVEL:-10}
+      - DEBUG=${DEBUG:-true}
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/api/health/service_health" ]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ====== Database Service ======
+  pg-growth-multi-agent-db:
+    image: postgres:17-alpine
+    container_name: pg-growth-multi-agent-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pg-growth-multi-agent-pgdata:/var/lib/postgresql/data
+    networks:
+      - pg-growth-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+# ====== Infrastructure ======
+volumes:
+  pg-growth-multi-agent-pgdata:
+
+networks:
+  pg-growth-network:
+    name: pg-growth-network
+    driver: bridge

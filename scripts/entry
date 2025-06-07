@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Fail-fast execution policy
+set -o errexit   # Exit on error
+set -o pipefail  # Catch pipeline errors
+set -o nounset   # Disallow unset variables
+
+
+# Allow database initialization time
+sleep 2
+echo "Waiting for database..."
+
+# Run database migrations
+echo "Running migrations..."
+litestar database upgrade --no-prompt # Auto-confirm migration prompt
+echo "Migrations completed successfully!"
+
+# Final startup delay
+sleep 2
+
+# Start application
+echo "Starting application..."
+exec litestar run --host 0.0.0.0 --port 8000

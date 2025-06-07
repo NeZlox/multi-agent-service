@@ -19,6 +19,6 @@ for p in ('/docs', '/openapi.json', '/docs/openapi.json'):
 
 # Unauthenticated session and health routes
 route_registry.add_public('POST', '/api/v1/auth/sessions')
-route_registry.add_public('PUT', '/api/v1/auth/sessions')
-route_registry.add_public('POST', '/api/v1/users/register')
-route_registry.add_public('GET', '/api/health/*')
+route_registry.add_public('PUT',  '/api/v1/auth/sessions')
+route_registry.add_public('POST', '/api/v1/auth/users/register')
+route_registry.add_public('GET',  '/api/health/*')

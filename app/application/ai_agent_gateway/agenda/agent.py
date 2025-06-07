@@ -8,7 +8,8 @@ from __future__ import annotations
 
 from personal_growth_sdk.lib.schemas.health_check_schema import HealthStatus
 
-from app.application.ai_agent_gateway import AIAgentGatewayInterface
+# Avoid importing from __init__.py to prevent circular import issues
+from app.application.ai_agent_gateway.ai_agent_interface import AIAgentGatewayInterface
 from app.config.base_settings import get_settings
 from app.lib.http import HttpService
 
@@ -47,7 +48,7 @@ class AgendaAgent(AIAgentGatewayInterface):
     @classmethod
     async def generate(
             cls,
-            chat_id: int,
+            chat_id: int,  # noqa: ARG003
             new_message: str
     ) -> str:
         """

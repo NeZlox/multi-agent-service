@@ -17,7 +17,7 @@ from __future__ import annotations
 from typing import Annotated
 
 import msgspec
-from litestar import Controller, Request, get, post
+from litestar import Controller, get, post
 from litestar.di import Provide
 from litestar.dto import DTOConfig, MsgspecDTO
 from litestar.openapi import ResponseSpec
@@ -67,20 +67,20 @@ class AuthUsersController(Controller):
     async def register_user(
             self,
             data: Annotated[UserCreateRequest, Body(title='Register User')],  # noqa: ARG002
-            request: Request
+            gw_state: GatewayState,
     ) -> UserResponse:
         """
         Register a new user account.
 
         Args:
             data: Registration payload
-            request: Incoming request (used to extract upstream response)
+            gw_state: Incoming request (used to extract upstream response)
 
         Returns:
             The created user profile
         """
 
-        user = msgspec.json.decode(request.state.resp, type=UserResponse)
+        user = msgspec.json.decode(gw_state.upstream_raw, type=UserResponse)
         return user
 
     @get(

@@ -58,7 +58,7 @@ class ChatExchangeService:
             Sequence containing the user message and the assistant's reply.
         """
 
-        # await self.snapshot_service.capture(user_id=user_id, message=message)
+        await self.snapshot_service.capture(user_id=user_id, message=message)
         ai_service = provide_ai_service(agent_name='agenda')
 
         user_msg = await self.message_service.create(

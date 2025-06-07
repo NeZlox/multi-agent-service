@@ -1,0 +1,30 @@
+# ====== Version Control ======
+.git/
+.gitignore
+
+# ====== Build/Config Files ======
+Dockerfile
+docker-compose.yml
+
+# ====== Security-Sensitive Files ======
+generate_jwt_keys.py
+.env.example
+
+# ====== Dependency Management ======
+poetry.lock
+
+# ====== Code Quality ======
+ruff.toml
+
+# ====== Documentation ======
+README.md
+docs/
+
+# ====== Testing ======
+tests/
+
+# ====== Local Development ======
+.venv/
+__pycache__/
+.pytest_cache/
+.idea/

@@ -1,7 +1,30 @@
-poetry.lock
-.idea
-.env
+# ====== DEVELOPMENT ENVIRONMENT ======
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ====== PYTHON RUNTIME ARTIFACTS ======
 __pycache__/
+*.py[cod]
+*.so
 .pytest_cache/
-.git/
+.mypy_cache/
+
+# ====== VIRTUAL ENVIRONMENTS ======
 .venv/
+venv/
+env/
+
+# ====== DEPENDENCY MANAGEMENT ======
+poetry.lock
+Pipfile.lock
+
+# ====== ENVIRONMENT CONFIGURATION ======
+.env
+.env.local
+.env.*.local
+
+# ====== VERSION CONTROL ======
+.git/           # Nested Git repositories
+.gitmodules     # Git submodule configuration

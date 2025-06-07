@@ -12,8 +12,8 @@ readme = "README.md"
 # - Local path version (development): links to local SDK for active development
 # Switch between these by commenting/uncommenting as needed
 
-#personal_growth_sdk = { git = "https://github.com/NeZlox/personal-growth-sdk.git", branch = "main" }
-personal_growth_sdk = { path = "../personal-growth-sdk", develop = true }
+personal_growth_sdk = { git = "https://github.com/NeZlox/personal-growth-sdk.git", branch = "main" }
+#personal_growth_sdk = { path = "../personal-growth-sdk", develop = true }
 
 # Core Python version requirement
 python = "^3.12"
@@ -31,11 +31,13 @@ multidict = "6.2.0"
 structlog = "^24"
 
 # Database
-advanced-alchemy = "^0.20"
+alembic = "1.15.1"
+advanced-alchemy = "0.20.0"
 sqlalchemy-utils = "^0"
 
 # Development tools
 ruff = "^0.11"
+python-crontab = "^3"
 
 # Authentication
 python-jose = "^3.4.0"
